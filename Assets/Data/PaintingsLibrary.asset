@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848409ee8ba454f42a5ddff137688a27, type: 3}
+  m_Name: PaintingsLibrary
+  m_EditorClassIdentifier: 
+  m_GuidLow: 4901439022852278537
+  m_GuidHigh: 7256299904462775998
+  m_Images:
+  - m_SerializedGuid:
+      m_GuidLow: 5625559737243162000
+      m_GuidHigh: 8739012019133302913
+    m_SerializedTextureGuid:
+      m_GuidLow: 15435238537393511553
+      m_GuidHigh: 12684523207934608410
+    m_Size: {x: 1, y: 1.490625}
+    m_SpecifySize: 1
+    m_Name: Mona Lisa
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 4922221253706486292
+      m_GuidHigh: 2217474605150617521
+    m_SerializedTextureGuid:
+      m_GuidLow: 18002103809066803765
+      m_GuidHigh: 14718172288571649771
+    m_Size: {x: 1, y: 0.8375}
+    m_SpecifySize: 1
+    m_Name: The Night Watch
+    m_Texture: {fileID: 0}
