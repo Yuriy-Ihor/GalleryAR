@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources tools:keep="@string/firebase_database_url,@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id" xmlns:tools="http://schemas.android.com/tools">
+  <string name="firebase_database_url" translatable="false">https://galleryar-d931e.firebaseio.com</string>
+  <string name="gcm_defaultSenderId" translatable="false">977080831315</string>
+  <string name="google_storage_bucket" translatable="false">galleryar-d931e.appspot.com</string>
+  <string name="project_id" translatable="false">galleryar-d931e</string>
+  <string name="google_api_key" translatable="false">AIzaSyAcOGypPYHNweQLgCLFM1ygySvKL7NP6rg</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAcOGypPYHNweQLgCLFM1ygySvKL7NP6rg</string>
+  <string name="google_app_id" translatable="false">1:977080831315:android:bb9fbd39f9205f206aa5a6</string>
+  <string name="default_web_client_id" translatable="false">977080831315-kplop1mf00au68c2ivonhs0rssf306ad.apps.googleusercontent.com</string>
+</resources>

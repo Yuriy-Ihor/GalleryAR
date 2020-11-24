@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "977080831315",
+    "firebase_url": "https://galleryar-d931e.firebaseio.com",
+    "project_id": "galleryar-d931e",
+    "storage_bucket": "galleryar-d931e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977080831315:android:bb9fbd39f9205f206aa5a6",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.GalleryAR"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "977080831315-kplop1mf00au68c2ivonhs0rssf306ad.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcOGypPYHNweQLgCLFM1ygySvKL7NP6rg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "977080831315-kplop1mf00au68c2ivonhs0rssf306ad.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
