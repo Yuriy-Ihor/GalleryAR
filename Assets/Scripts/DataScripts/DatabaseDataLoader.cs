@@ -6,12 +6,10 @@ using UnityEngine.Events;
 
 public class DatabaseDataLoader : UnitySingleton<DatabaseDataLoader>
 {
-    private Dictionary<string, PaintingData> _data = new Dictionary<string, PaintingData>();
     private FirebaseDatabase _database;
-
     private PaintingsDataSaver _dataSaver;
 
-    public UnityAction OnAllDataLoaded;
+    public UnityEvent OnAllDataLoaded;
 
     private void Start()
     {
@@ -38,7 +36,7 @@ public class DatabaseDataLoader : UnitySingleton<DatabaseDataLoader>
                     _dataSaver.SaveLoadedSnapshotData(painting);
                 }
 
-                OnAllDataLoaded();
+                OnAllDataLoaded.Invoke();
             }
         });
     }

@@ -2,16 +2,15 @@
 using System;
 using System.IO;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using Firebase.Database;
 
 public class PaintingsDataSaver : UnitySingleton<PaintingsDataSaver>
 {
-    public static readonly string PathToPaintings = Application.dataPath + "/Data/Paintings";
-    public static readonly string PathToPaintingsData = Application.dataPath + "/Data/PaintingsData";
-
-    public UnityAction OnAllDataSaved;
+    public List<PaintingData> Data = new List<PaintingData>();
+    public static string PathToPaintings => Application.dataPath + "/Data/Paintings";
+    public static string PathToPaintingsData => Application.dataPath + "/Data/PaintingsData";
 
     public void SaveLoadedSnapshotData(DataSnapshot painting)
     {
@@ -20,7 +19,17 @@ public class PaintingsDataSaver : UnitySingleton<PaintingsDataSaver>
         PaintingData newData = JsonUtility.FromJson<PaintingData>(info);
 
         DownloadImage(painting.Key + ".jpg", newData.Src, PathToPaintings);
-        File.WriteAllText(Path.Combine(PathToPaintingsData, painting.Key + ".json"), info);
+
+        try
+        {
+            File.WriteAllText(Path.Combine(PathToPaintingsData, painting.Key + ".json"), info);
+        }
+        catch(Exception e)
+        {
+            Debug.LogError(e.ToString());
+        }
+
+        Data.Add(newData);
     }
 
     public void DownloadImage(string fileName, string url, string pathToSaveImage)
@@ -35,8 +44,6 @@ public class PaintingsDataSaver : UnitySingleton<PaintingsDataSaver>
 
         if (string.IsNullOrEmpty(www.error))
         {
-            Debug.Log("Success");
-
             saveImage(fileName, savePath, www.bytes);
         }
         else
