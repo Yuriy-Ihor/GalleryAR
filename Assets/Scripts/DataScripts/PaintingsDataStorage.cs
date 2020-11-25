@@ -11,7 +11,7 @@ public class PaintingsDataStorage : UnitySingleton<PaintingsDataStorage>
 
     private void Start()
     {
-        //_databaseDataLoader = DatabaseDataLoader.GetInstance;
+        //ack_databaseDataLoader = DatabaseDataLoader.GetInstance;
         loadDataFromJsons();
         //_databaseDataLoader.OnAllDataLoaded.AddListener(loadDataFromJsons);
     }

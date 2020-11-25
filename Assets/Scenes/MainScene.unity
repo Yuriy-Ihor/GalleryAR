@@ -531,9 +531,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FocusMode: -1
   m_LightEstimationMode: -1
-  m_AutoFocus: 1
-  m_LightEstimation: 0
-  m_FacingDirection: 1
 --- !u!114 &1063593995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -872,7 +869,7 @@ GameObject:
   - component: {fileID: 1601303422}
   - component: {fileID: 1601303421}
   m_Layer: 0
-  m_Name: ReferenceLibraryInitializer
+  m_Name: LibraryInitializer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -890,7 +887,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29c545449bfb392459c0b3d59282b1f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _databaseDataLoader: {fileID: 0}
 --- !u!4 &1601303422
 Transform:
   m_ObjectHideFlags: 0
@@ -1133,7 +1129,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AttemptUpdate: 1
   m_MatchFrameRate: 1
-  m_TrackingMode: 2
 --- !u!4 &2129428845
 Transform:
   m_ObjectHideFlags: 0
