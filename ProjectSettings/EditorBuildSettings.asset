@@ -6,6 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes: []
   m_configObjects:
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 6f5f1cc6e86dec446ba915a210cbe739,
+      type: 2}
+    UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: fd2591ff9f3c6ed41af875a1fe808608,
+      type: 2}
     com.unity.xr.arcore.PlayerSettings: {fileID: 11400000, guid: 448aafb5af471b843ac337e4657ed566,
       type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: f45a92ac81800f447a5c5069fe6f3aa5,

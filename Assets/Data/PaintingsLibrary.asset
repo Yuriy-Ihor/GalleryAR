@@ -16,22 +16,32 @@ MonoBehaviour:
   m_GuidHigh: 7256299904462775998
   m_Images:
   - m_SerializedGuid:
-      m_GuidLow: 5625559737243162000
-      m_GuidHigh: 8739012019133302913
+      m_GuidLow: 4725914386470495137
+      m_GuidHigh: 8500582496663893131
     m_SerializedTextureGuid:
-      m_GuidLow: 15435238537393511553
-      m_GuidHigh: 12684523207934608410
+      m_GuidLow: 15313508219390561092
+      m_GuidHigh: 15530344543072742523
     m_Size: {x: 1, y: 1.490625}
     m_SpecifySize: 1
-    m_Name: Mona Lisa
+    m_Name: 0
     m_Texture: {fileID: 0}
   - m_SerializedGuid:
-      m_GuidLow: 4922221253706486292
-      m_GuidHigh: 2217474605150617521
+      m_GuidLow: 5026829609611174264
+      m_GuidHigh: 10958207317607330948
     m_SerializedTextureGuid:
-      m_GuidLow: 18002103809066803765
-      m_GuidHigh: 14718172288571649771
+      m_GuidLow: 784884756992244969
+      m_GuidHigh: 8828766276525776760
     m_Size: {x: 1, y: 0.8375}
     m_SpecifySize: 1
-    m_Name: The Night Watch
+    m_Name: 1
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5749039814087198968
+      m_GuidHigh: 8183686619793626303
+    m_SerializedTextureGuid:
+      m_GuidLow: 17988550050774503118
+      m_GuidHigh: 5214627476907539835
+    m_Size: {x: 1, y: 0.99531615}
+    m_SpecifySize: 1
+    m_Name: 2
     m_Texture: {fileID: 0}
