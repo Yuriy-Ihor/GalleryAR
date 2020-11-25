@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class PaintingsDataStorage : UnitySingleton<PaintingsDataStorage>
 {
-    public List<PaintingData> Data = new List<PaintingData>();
-    private Dictionary<string, PaintingData> _data = new Dictionary<string, PaintingData>();
+    private Dictionary<string, PaintingData> _paintingsData = new Dictionary<string, PaintingData>();
 
     private DatabaseDataLoader _databaseDataLoader;
 
@@ -19,8 +18,6 @@ public class PaintingsDataStorage : UnitySingleton<PaintingsDataStorage>
 
     private void loadDataFromJsons()
     {
-        Debug.Log("Reading data from jsons");
-
         var info = new DirectoryInfo(PaintingsDataSaver.PathToPaintingsData);
         var fileInfo = info.GetFiles();
 
@@ -31,9 +28,10 @@ public class PaintingsDataStorage : UnitySingleton<PaintingsDataStorage>
             if(file.Extension == ".json")
             {
                 reader = new StreamReader(file.ToString());
+                string key = Path.GetFileNameWithoutExtension(file.Name);
 
                 PaintingData newPaintingData = JsonUtility.FromJson<PaintingData>(reader.ReadToEnd());
-                Data.Add(newPaintingData);
+                _paintingsData.Add(key, newPaintingData);
             }
         }
     }
@@ -42,19 +40,13 @@ public class PaintingsDataStorage : UnitySingleton<PaintingsDataStorage>
     {
         try
         {
-            return _data[key];
+            return _paintingsData[key];
         }
         catch(Exception e)
         {
-            Debug.LogException(e);
+            Debug.LogError(e.ToString());
         }
 
         return new PaintingData();
     }
-}
-
-[Serializable]
-public struct PaintingData
-{
-    public string Title, Author, Info, Src;
 }
