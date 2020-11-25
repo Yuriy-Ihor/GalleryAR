@@ -7,8 +7,8 @@ using Firebase.Database;
 
 public class PaintingsDataSaver : UnitySingleton<PaintingsDataSaver>
 {
-    public static string PathToPaintings => Application.dataPath + "/Data/Paintings";
-    public static string PathToPaintingsData => Application.dataPath + "/Data/PaintingsData";
+    public static string PathToPaintings => Application.persistentDataPath + "/Data/Paintings";
+    public static string PathToPaintingsData => Application.persistentDataPath + "/Data/PaintingsData";
 
     public int TotalImagesDownloaded { get; private set; } = 0;
 
@@ -23,6 +23,10 @@ public class PaintingsDataSaver : UnitySingleton<PaintingsDataSaver>
         try
         {
             Debug.Log("Saved data of " + newData.Title);
+
+            if(!Directory.Exists(PathToPaintingsData))
+                System.IO.Directory.CreateDirectory(PathToPaintingsData);
+
             File.WriteAllText(Path.Combine(PathToPaintingsData, painting.Key + ".json"), info);
         }
         catch(Exception e)
@@ -59,6 +63,9 @@ public class PaintingsDataSaver : UnitySingleton<PaintingsDataSaver>
         {
             Directory.CreateDirectory(Path.GetDirectoryName(path));
         }
+
+        if (!Directory.Exists(PathToPaintings))
+            System.IO.Directory.CreateDirectory(PathToPaintings);
 
         string pathWithFileName = Path.Combine(path, fileName);
 

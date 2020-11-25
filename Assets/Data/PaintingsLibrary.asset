@@ -14,4 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GuidLow: 4901439022852278537
   m_GuidHigh: 7256299904462775998
-  m_Images: []
+  m_Images:
+  - m_SerializedGuid:
+      m_GuidLow: 4652971045223702756
+      m_GuidHigh: 10339637368907791789
+    m_SerializedTextureGuid:
+      m_GuidLow: 15313508219390561092
+      m_GuidHigh: 15530344543072742523
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: ButtonBg
+    m_Texture: {fileID: 0}

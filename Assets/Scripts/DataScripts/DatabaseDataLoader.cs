@@ -27,7 +27,9 @@ public class DatabaseDataLoader : UnitySingleton<DatabaseDataLoader>
             LoadAndSaveData();
         });
     }
+
     private IEnumerator coroutine;
+
     private void LoadAndSaveData()
     {
         _database.GetReference("Paintings").GetValueAsync().ContinueWith(task => {
