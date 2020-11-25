@@ -1,14 +1,16 @@
-﻿using Firebase;
+﻿using UnityEngine;
+using Firebase;
 using Firebase.Extensions;
 using Firebase.Database;
 using UnityEngine.Events;
 
 public class DatabaseDataLoader : UnitySingleton<DatabaseDataLoader>
 {
+    public OnAllDataLoaded OnAllDataLoadedEvent = new OnAllDataLoaded();
+    public bool AllDataLoaded { get; private set; } = false;
+
     private FirebaseDatabase _database;
     private PaintingsDataSaver _dataSaver;
-
-    public UnityEvent OnAllDataLoaded;
 
     private void Start()
     {
@@ -16,6 +18,8 @@ public class DatabaseDataLoader : UnitySingleton<DatabaseDataLoader>
         _dataSaver = PaintingsDataSaver.GetInstance;
 
         _database.SetPersistenceEnabled(false);
+
+        OnAllDataLoadedEvent.AddListener(() => { AllDataLoaded = true; });
 
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
         {
@@ -32,11 +36,20 @@ public class DatabaseDataLoader : UnitySingleton<DatabaseDataLoader>
 
                 foreach (DataSnapshot painting in snapshot.Children)
                 {
+                    Debug.Log("Saving data with key = " + painting.Key);
                     _dataSaver.SaveLoadedSnapshotData(painting);
                 }
 
-                OnAllDataLoaded.Invoke();
+                OnAllDataLoadedEvent.Invoke();
             }
         });
     }
+    
+
+}
+
+[System.Serializable]
+public class OnAllDataLoaded : UnityEvent
+{
+
 }

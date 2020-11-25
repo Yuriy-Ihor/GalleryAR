@@ -5,19 +5,14 @@ using UnityEngine;
 
 public class PaintingsDataStorage : UnitySingleton<PaintingsDataStorage>
 {
+    public List<string> Keys = new List<string>();
+    public List<PaintingData> Datas = new List<PaintingData>();
+
     private Dictionary<string, PaintingData> _paintingsData = new Dictionary<string, PaintingData>();
 
-    private DatabaseDataLoader _databaseDataLoader;
-
-    private void Start()
+    public void LoadDataFromJsons()
     {
-        //ack_databaseDataLoader = DatabaseDataLoader.GetInstance;
-        loadDataFromJsons();
-        //_databaseDataLoader.OnAllDataLoaded.AddListener(loadDataFromJsons);
-    }
-
-    private void loadDataFromJsons()
-    {
+        Debug.Log("Loading data from json...");
         var info = new DirectoryInfo(PaintingsDataSaver.PathToPaintingsData);
         var fileInfo = info.GetFiles();
 
@@ -32,8 +27,13 @@ public class PaintingsDataStorage : UnitySingleton<PaintingsDataStorage>
 
                 PaintingData newPaintingData = JsonUtility.FromJson<PaintingData>(reader.ReadToEnd());
                 _paintingsData.Add(key, newPaintingData);
+
+                Keys.Add(key);
+                Datas.Add(newPaintingData);
             }
         }
+
+        Debug.Log("Data loaded successfully!");
     }
 
     public PaintingData GetPaintingData(string key)

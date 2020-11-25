@@ -20,6 +20,7 @@ public class PaintingsDataSaver : UnitySingleton<PaintingsDataSaver>
 
         try
         {
+            Debug.Log("Saved data of " + newData.Title);
             File.WriteAllText(Path.Combine(PathToPaintingsData, painting.Key + ".json"), info);
         }
         catch(Exception e)
@@ -59,6 +60,7 @@ public class PaintingsDataSaver : UnitySingleton<PaintingsDataSaver>
 
         try
         {
+            Debug.Log("Saved image named " + fileName);
             File.WriteAllBytes(pathWithFileName, imageBytes);
         }
         catch (Exception e)
