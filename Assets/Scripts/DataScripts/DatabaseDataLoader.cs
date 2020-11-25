@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Firebase;
+﻿using Firebase;
 using Firebase.Extensions;
 using Firebase.Database;
 using UnityEngine.Events;

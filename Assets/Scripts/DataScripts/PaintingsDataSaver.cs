@@ -2,13 +2,11 @@
 using System;
 using System.IO;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Firebase.Database;
 
 public class PaintingsDataSaver : UnitySingleton<PaintingsDataSaver>
 {
-    public List<PaintingData> Data = new List<PaintingData>();
     public static string PathToPaintings => Application.dataPath + "/Data/Paintings";
     public static string PathToPaintingsData => Application.dataPath + "/Data/PaintingsData";
 
@@ -28,8 +26,6 @@ public class PaintingsDataSaver : UnitySingleton<PaintingsDataSaver>
         {
             Debug.LogError(e.ToString());
         }
-
-        Data.Add(newData);
     }
 
     public void DownloadImage(string fileName, string url, string pathToSaveImage)
@@ -64,7 +60,6 @@ public class PaintingsDataSaver : UnitySingleton<PaintingsDataSaver>
         try
         {
             File.WriteAllBytes(pathWithFileName, imageBytes);
-            Debug.Log("Saved image to: " + path.Replace("/", "\\"));
         }
         catch (Exception e)
         {
