@@ -10,6 +10,8 @@ public class PaintingsDataSaver : UnitySingleton<PaintingsDataSaver>
     public static string PathToPaintings => Application.dataPath + "/Data/Paintings";
     public static string PathToPaintingsData => Application.dataPath + "/Data/PaintingsData";
 
+    public int TotalImagesDownloaded { get; private set; } = 0;
+
     public void SaveLoadedSnapshotData(DataSnapshot painting)
     {
         string info = painting.GetRawJsonValue();
@@ -38,6 +40,8 @@ public class PaintingsDataSaver : UnitySingleton<PaintingsDataSaver>
     private IEnumerator downloadImage(string fileName, WWW www, string savePath)
     {
         yield return www;
+
+        TotalImagesDownloaded++;
 
         if (string.IsNullOrEmpty(www.error))
         {

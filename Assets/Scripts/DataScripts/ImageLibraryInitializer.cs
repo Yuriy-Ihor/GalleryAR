@@ -21,13 +21,15 @@ public class ImageLibraryInitializer : MonoBehaviour
     {
         loadPaintings();
 
-        RuntimeReferenceImageLibrary runtimeLibrary = _trackedImageManager.CreateRuntimeLibrary();
+        //RuntimeReferenceImageLibrary runtimeLibrary = _trackedImageManager.CreateRuntimeLibrary();
 
-        MutableRuntimeReferenceImageLibrary mutableLibrary = runtimeLibrary as MutableRuntimeReferenceImageLibrary;
+        //MutableRuntimeReferenceImageLibrary mutableLibrary = runtimeLibrary as MutableRuntimeReferenceImageLibrary;
     }
 
     private void loadPaintings()
     {
+        Debug.Log("Loading paintings...");
+
         var paintings = new DirectoryInfo(PaintingsDataSaver.PathToPaintings);
         var fileInfo = paintings.GetFiles();
 

@@ -150,6 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fdbc600027d65b46bc6b0153e59c319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Keys: []
+  Datas: []
 --- !u!4 &511566799
 Transform:
   m_ObjectHideFlags: 0
@@ -192,7 +194,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &835370199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,6 +391,7 @@ GameObject:
   - component: {fileID: 968079564}
   - component: {fileID: 968079563}
   - component: {fileID: 968079566}
+  - component: {fileID: 968079565}
   m_Layer: 0
   m_Name: AR Session Origin
   m_TagString: Untagged
@@ -424,6 +427,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &968079565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968079562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c545449bfb392459c0b3d59282b1f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _trackedImageManager: {fileID: 968079566}
+  _paintings: []
 --- !u!114 &968079566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,7 +596,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1145428411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,9 +609,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 048b7124e4845e4499ef3cd19efd7a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnAllDataLoaded:
+  OnAllDataLoadedEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 511566798}
+        m_MethodName: LoadDataFromJsons
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 968079565}
+        m_MethodName: LoadDataToImageLibrary
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1145428412
 Transform:
   m_ObjectHideFlags: 0
@@ -858,49 +897,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1349232500}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1601303420
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1601303422}
-  - component: {fileID: 1601303421}
-  m_Layer: 0
-  m_Name: LibraryInitializer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1601303421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1601303420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29c545449bfb392459c0b3d59282b1f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1601303422
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1601303420}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.42522025, y: 0.69626546, z: -1.0299113}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1626193853
 GameObject:
   m_ObjectHideFlags: 0

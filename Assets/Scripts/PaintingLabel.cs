@@ -9,7 +9,7 @@ public class PaintingLabel : MonoBehaviour
     [SerializeField] private TextMeshPro _paintingInfo;
 
     private Vector3 _offset = new Vector3(1, 0, 0);
-    private PaintingData _paintingData;
+    [SerializeField] private PaintingData _paintingData;
 
     public void Init(ARTrackedImage image)
     {

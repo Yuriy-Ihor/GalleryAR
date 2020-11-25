@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using Firebase;
 using Firebase.Extensions;
 using Firebase.Database;
@@ -26,13 +27,14 @@ public class DatabaseDataLoader : UnitySingleton<DatabaseDataLoader>
             LoadAndSaveData();
         });
     }
-
+    private IEnumerator coroutine;
     private void LoadAndSaveData()
     {
         _database.GetReference("Paintings").GetValueAsync().ContinueWith(task => {
             if (task.IsCompleted)
             {
                 DataSnapshot snapshot = task.Result;
+                long totalImages = snapshot.ChildrenCount;
 
                 foreach (DataSnapshot painting in snapshot.Children)
                 {
@@ -40,11 +42,19 @@ public class DatabaseDataLoader : UnitySingleton<DatabaseDataLoader>
                     _dataSaver.SaveLoadedSnapshotData(painting);
                 }
 
-                OnAllDataLoadedEvent.Invoke();
+                coroutine = WaitUntilAllImagesSaved(totalImages);
+
+                StartCoroutine(coroutine);
             }
         });
     }
     
+    private IEnumerator WaitUntilAllImagesSaved(long totalImages)
+    {
+        yield return new WaitUntil( () => totalImages <= _dataSaver.TotalImagesDownloaded );
+
+        OnAllDataLoadedEvent.Invoke();
+    }
 
 }
 
