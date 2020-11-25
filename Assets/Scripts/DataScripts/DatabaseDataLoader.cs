@@ -12,7 +12,7 @@ using Firebase.Unity.Editor;
 
 public class DatabaseDataLoader : UnitySingleton<DatabaseDataLoader>
 {
-    [SerializeField] private List<PaintingData> _data = new List<PaintingData>();
+    private Dictionary<string, PaintingData> _data = new Dictionary<string, PaintingData>();
 
     private FirebaseDatabase _database;
 
@@ -32,8 +32,6 @@ public class DatabaseDataLoader : UnitySingleton<DatabaseDataLoader>
 
     private void LoadData()
     {
-        string dataPath = Application.dataPath + "/Data/Paintings";
-
         _database.GetReference("Paintings").GetValueAsync().ContinueWith(task => {
             if (task.IsCompleted)
             {
@@ -41,22 +39,22 @@ public class DatabaseDataLoader : UnitySingleton<DatabaseDataLoader>
 
                 foreach (DataSnapshot painting in snapshot.Children)
                 {
-                    string info = painting.GetRawJsonValue();
-
-                    PaintingData newData = JsonUtility.FromJson<PaintingData>(info);
-                    _data.Add(newData);
-
-                    if (!System.IO.File.Exists(Path.Combine(dataPath, newData.Title + ".jpg")))
-                    {
-                        DownloadImage(newData.Title + ".jpg", newData.Src, dataPath);
-                    }
-                    else
-                    {
-                        Debug.Log("Picture " + newData.Title + ".jpg already exists");
-                    }
+                    saveLoadedData(painting);
                 }
             }
         });
+    }
+
+    private void saveLoadedData(DataSnapshot painting)
+    {
+        string info = painting.GetRawJsonValue();
+
+        PaintingData newData = JsonUtility.FromJson<PaintingData>(info);
+
+        DownloadImage(painting.Key + ".jpg", newData.Src, Application.dataPath + "/Data/Paintings");
+        File.WriteAllText(Path.Combine(Application.dataPath + "/Data/PaintingsInfo", painting.Key + ".json"), info);
+
+        _data.Add(painting.Key, newData);
     }
 
     public void DownloadImage(string fileName, string url, string pathToSaveImage)
@@ -88,16 +86,16 @@ public class DatabaseDataLoader : UnitySingleton<DatabaseDataLoader>
             Directory.CreateDirectory(Path.GetDirectoryName(path));
         }
 
-        string finalPath = Path.Combine(path, fileName);
+        string pathWithFileName = Path.Combine(path, fileName);
 
         try
         {
-            File.WriteAllBytes(finalPath, imageBytes);
+            File.WriteAllBytes(pathWithFileName, imageBytes);
             Debug.Log("Saved Data to: " + path.Replace("/", "\\"));
         }
         catch (Exception e)
         {
-            Debug.LogWarning("Failed To Save Data to: " + finalPath.Replace("/", "\\"));
+            Debug.LogWarning("Failed To Save Data to: " + pathWithFileName.Replace("/", "\\"));
             Debug.LogWarning("Error: " + e.Message);
         }
     }

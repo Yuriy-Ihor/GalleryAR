@@ -150,9 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fdbc600027d65b46bc6b0153e59c319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _paintingDatas:
-  - {fileID: 4900000, guid: f17acf9ac7675034ebfc084d341219e5, type: 3}
-  - {fileID: 4900000, guid: 4b21bd3292281184fb06697d670ac4f3, type: 3}
+  _paintingDatas: []
 --- !u!4 &511566799
 Transform:
   m_ObjectHideFlags: 0
@@ -553,7 +551,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 048b7124e4845e4499ef3cd19efd7a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data: []
 --- !u!4 &1145428412
 Transform:
   m_ObjectHideFlags: 0
