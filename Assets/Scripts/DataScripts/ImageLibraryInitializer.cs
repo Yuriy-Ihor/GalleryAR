@@ -21,7 +21,9 @@ public class ImageLibraryInitializer : UnitySingleton<ImageLibraryInitializer>
     {
         _trackedImageManager = gameObject.AddComponent<ARTrackedImageManager>();
 
+#if !UNITY_EDITOR
         _trackedImageManager.referenceLibrary = _trackedImageManager.CreateRuntimeLibrary(_xrReferenceImageLibrary);
+#endif
 
         _trackedImageManager.enabled = true;
     }
@@ -40,6 +42,7 @@ public class ImageLibraryInitializer : UnitySingleton<ImageLibraryInitializer>
 
     public void AddNewImage(string name, Texture2D image)
     {
+ #if !UNITY_EDITOR
         _mutableLibrary = _trackedImageManager.referenceLibrary as MutableRuntimeReferenceImageLibrary;
 
         try
@@ -51,6 +54,7 @@ public class ImageLibraryInitializer : UnitySingleton<ImageLibraryInitializer>
         {
             Debug.LogError(e.ToString());
         }
+#endif
     }
 
     private void loadPaintings()

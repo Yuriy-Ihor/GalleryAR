@@ -23,7 +23,6 @@ public class PaintingsDataStorage : UnitySingleton<PaintingsDataStorage>
                 string key = Path.GetFileNameWithoutExtension(file.Name);
 
                 PaintingData newPaintingData = JsonUtility.FromJson<PaintingData>(reader.ReadToEnd());
-                Data.Add(newPaintingData);
                 _paintingsData.Add(key, newPaintingData);
             }
         }
