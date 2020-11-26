@@ -15,7 +15,6 @@ public class ImageLibraryInitializer : UnitySingleton<ImageLibraryInitializer>
     private MutableRuntimeReferenceImageLibrary _mutableLibrary;
 
     public OnLibraryCreated OnLibraryCreatedEvent = new OnLibraryCreated();
-    public int TotalImagesAdded = 0;
 
     private void Awake()
     {
@@ -42,6 +41,7 @@ public class ImageLibraryInitializer : UnitySingleton<ImageLibraryInitializer>
 
     public void AddNewImage(string name, Texture2D image)
     {
+
  #if !UNITY_EDITOR
         _mutableLibrary = _trackedImageManager.referenceLibrary as MutableRuntimeReferenceImageLibrary;
 
@@ -55,12 +55,11 @@ public class ImageLibraryInitializer : UnitySingleton<ImageLibraryInitializer>
             Debug.LogError(e.ToString());
         }
 #endif
+
     }
 
     private void loadPaintings()
     {
-        Debug.Log("Loading paintings...");
-
         var paintings = new DirectoryInfo(PaintingsDataSaver.PathToPaintings);
         var fileInfo = paintings.GetFiles();
 
@@ -68,14 +67,14 @@ public class ImageLibraryInitializer : UnitySingleton<ImageLibraryInitializer>
         {
             if (file.Extension == ".jpg")
             {
-                var texture = LoadPNG(file.ToString());
-                Debug.Log(Path.GetFileNameWithoutExtension(file.ToString()));
+                var texture = loadPNG(file.ToString());
+
                 _paintings.Add(Path.GetFileNameWithoutExtension(file.ToString()), texture);
             }
         }
     }
 
-    public static Texture2D LoadPNG(string filePath)
+    private Texture2D loadPNG(string filePath)
     {
         Texture2D tex = null;
         byte[] fileData;

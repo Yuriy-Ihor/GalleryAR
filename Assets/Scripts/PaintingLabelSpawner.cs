@@ -12,21 +12,27 @@ public class PaintingLabelSpawner : MonoBehaviour
     public void SubscribeOnARTrackedImageManagerTrackedImagesChangedEvent()
     {
         if (_arTrackedImageManager == null)
+        {
             _arTrackedImageManager = (ARTrackedImageManager)FindObjectOfType(typeof(ARTrackedImageManager));
+        }
 
         _arTrackedImageManager.trackedImagesChanged += OnPaintingIdentified;
     }
 
     private void OnEnable()
     {
-        if(_arTrackedImageManager != null)
+        if (_arTrackedImageManager != null)
+        {
             _arTrackedImageManager.trackedImagesChanged += OnPaintingIdentified;
+        }
     }
 
     private void OnDisable()
     {
         if (_arTrackedImageManager != null)
+        {
             _arTrackedImageManager.trackedImagesChanged -= OnPaintingIdentified;
+        }
     }
 
     private void OnPaintingIdentified(ARTrackedImagesChangedEventArgs args)

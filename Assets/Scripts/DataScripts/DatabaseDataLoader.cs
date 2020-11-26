@@ -8,7 +8,6 @@ using UnityEngine.Events;
 public class DatabaseDataLoader : UnitySingleton<DatabaseDataLoader>
 {
     public OnAllDataLoadAttempt OnAllDataLoadAttemptEvent = new OnAllDataLoadAttempt();
-    public bool AllDataLoaded { get; private set; } = false;
 
     private FirebaseDatabase _database;
     private PaintingsDataSaver _dataSaver;
@@ -20,7 +19,6 @@ public class DatabaseDataLoader : UnitySingleton<DatabaseDataLoader>
 
         if (Application.internetReachability == NetworkReachability.NotReachable)
         {
-            Debug.Log("No internet connection!");
             OnAllDataLoadAttemptEvent.Invoke();
         }
         else
@@ -51,7 +49,6 @@ public class DatabaseDataLoader : UnitySingleton<DatabaseDataLoader>
 
                 foreach (DataSnapshot painting in snapshot.Children)
                 {
-                    Debug.Log("Saving data with key = " + painting.Key);
                     _dataSaver.SaveLoadedSnapshotData(painting);
                 }
 
@@ -73,6 +70,4 @@ public class DatabaseDataLoader : UnitySingleton<DatabaseDataLoader>
 
 [System.Serializable]
 public class OnAllDataLoadAttempt : UnityEvent
-{
-
-}
+{ }

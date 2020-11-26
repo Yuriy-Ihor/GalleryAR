@@ -1,6 +1,5 @@
-﻿using System;
-
-[Serializable]
+﻿
+[System.Serializable]
 public struct PaintingData
 {
     public string Title; 

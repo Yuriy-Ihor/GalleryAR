@@ -9,7 +9,6 @@ public class PaintingsDataStorage : UnitySingleton<PaintingsDataStorage>
 
     public void LoadDataFromJsons()
     {
-        Debug.Log("Loading data from json...");
         var info = new DirectoryInfo(PaintingsDataSaver.PathToPaintingsData);
         var fileInfo = info.GetFiles();
 
@@ -26,8 +25,6 @@ public class PaintingsDataStorage : UnitySingleton<PaintingsDataStorage>
                 _paintingsData.Add(key, newPaintingData);
             }
         }
-
-        Debug.Log("Data loaded successfully!");
     }
 
     public PaintingData GetPaintingData(string key)

@@ -10,8 +10,6 @@ public class PaintingLabel : MonoBehaviour
 
     private PaintingData _paintingData;
 
-    private Vector3 _offset = new Vector3(0.5f, 0, 0);
-
     public void Init(ARTrackedImage image)
     {
         PaintingsDataStorage paintingsDataStorage = PaintingsDataStorage.GetInstance;
@@ -22,8 +20,7 @@ public class PaintingLabel : MonoBehaviour
         _paintingInfo.text = _paintingData.Info;
 
         transform.parent = image.transform;
-        _offset = new Vector3(image.referenceImage.size.x, 0, 0);
-        transform.localPosition = _offset;
+        transform.localPosition = new Vector3(image.referenceImage.size.x, 0, 0);
 
         transform.localScale *= image.referenceImage.size.x;
     }

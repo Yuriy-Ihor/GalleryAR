@@ -22,10 +22,10 @@ public class PaintingsDataSaver : UnitySingleton<PaintingsDataSaver>
 
         try
         {
-            Debug.Log("Saved data of " + newData.Title);
-
-            if(!Directory.Exists(PathToPaintingsData))
-                System.IO.Directory.CreateDirectory(PathToPaintingsData);
+            if (!Directory.Exists(PathToPaintingsData))
+            {
+                Directory.CreateDirectory(PathToPaintingsData);
+            }
 
             File.WriteAllText(Path.Combine(PathToPaintingsData, painting.Key + ".json"), info);
         }
@@ -64,14 +64,10 @@ public class PaintingsDataSaver : UnitySingleton<PaintingsDataSaver>
             Directory.CreateDirectory(Path.GetDirectoryName(path));
         }
 
-        if (!Directory.Exists(PathToPaintings))
-            System.IO.Directory.CreateDirectory(PathToPaintings);
-
         string pathWithFileName = Path.Combine(path, fileName);
 
         try
         {
-            Debug.Log("Saved image named " + fileName);
             File.WriteAllBytes(pathWithFileName, imageBytes);
         }
         catch (Exception e)

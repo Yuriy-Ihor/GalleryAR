@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public abstract class UnitySingleton<T> : MonoBehaviour where T : MonoBehaviour
@@ -13,7 +9,6 @@ public abstract class UnitySingleton<T> : MonoBehaviour where T : MonoBehaviour
         {
             if (_instance != this)
             {
-//                Debug.Log("Instance already exist; Destroying " + name);
                 Destroy(gameObject);
                 return;
             }
