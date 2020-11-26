@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 public class DatabaseDataLoader : UnitySingleton<DatabaseDataLoader>
 {
-    public OnAllDataLoaded OnAllDataLoadedEvent = new OnAllDataLoaded();
+    public OnAllDataLoadAttempt OnAllDataLoadAttemptEvent = new OnAllDataLoadAttempt();
     public bool AllDataLoaded { get; private set; } = false;
 
     private FirebaseDatabase _database;
@@ -15,12 +15,23 @@ public class DatabaseDataLoader : UnitySingleton<DatabaseDataLoader>
 
     private void Start()
     {
+        _dataSaver = PaintingsDataSaver.GetInstance; 
         _database = FirebaseDatabase.DefaultInstance;
-        _dataSaver = PaintingsDataSaver.GetInstance;
 
+        if (Application.internetReachability == NetworkReachability.NotReachable)
+        {
+            Debug.Log("No internet connection!");
+            OnAllDataLoadAttemptEvent.Invoke();
+        }
+        else
+        {
+            initializeFirebase();
+        }
+    }
+
+    private void initializeFirebase()
+    {
         _database.SetPersistenceEnabled(false);
-
-        OnAllDataLoadedEvent.AddListener(() => { AllDataLoaded = true; });
 
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
         {
@@ -55,13 +66,13 @@ public class DatabaseDataLoader : UnitySingleton<DatabaseDataLoader>
     {
         yield return new WaitUntil( () => totalImages <= _dataSaver.TotalImagesDownloaded );
 
-        OnAllDataLoadedEvent.Invoke();
+        OnAllDataLoadAttemptEvent.Invoke();
     }
 
 }
 
 [System.Serializable]
-public class OnAllDataLoaded : UnityEvent
+public class OnAllDataLoadAttempt : UnityEvent
 {
 
 }

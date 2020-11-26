@@ -11,26 +11,25 @@ public class PaintingLabelSpawner : MonoBehaviour
     private List<PaintingLabel> _spawnedLabels;
     public bool SubscribedOnEvent = false;
 
-    private void Start()
+    public void SubscribeOnARTrackedImageManagerTrackedImagesChangedEvent()
     {
         if (_arTrackedImageManager == null)
             _arTrackedImageManager = (ARTrackedImageManager)FindObjectOfType(typeof(ARTrackedImageManager));
-    }
 
-    public void SubscribeOnARTrackedImageManagerTrackedImagesChangedEvent()
-    {
         _arTrackedImageManager.trackedImagesChanged += OnPaintingIdentified;
         SubscribedOnEvent = true;
     }
 
     private void OnEnable()
     {
-        //_arTrackedImageManager.trackedImagesChanged += OnPaintingIdentified;
+        if(_arTrackedImageManager != null)
+            _arTrackedImageManager.trackedImagesChanged += OnPaintingIdentified;
     }
 
     private void OnDisable()
     {
-        //_arTrackedImageManager.trackedImagesChanged -= OnPaintingIdentified;
+        if (_arTrackedImageManager != null)
+            _arTrackedImageManager.trackedImagesChanged -= OnPaintingIdentified;
     }
 
     private void OnPaintingIdentified(ARTrackedImagesChangedEventArgs args)

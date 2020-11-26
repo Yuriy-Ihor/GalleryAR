@@ -452,6 +452,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  TotalImagesAdded: 0
 --- !u!1 &1063593991
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,11 +605,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 048b7124e4845e4499ef3cd19efd7a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnAllDataLoadedEvent:
+  OnAllDataLoadAttemptEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 511566798}
-        m_MethodName: LoadDataFromJsons
+      - m_Target: {fileID: 968079565}
+        m_MethodName: InitializeImageLibrary
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -618,8 +619,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 968079565}
-        m_MethodName: LoadDataToImageLibrary
+      - m_Target: {fileID: 511566798}
+        m_MethodName: LoadDataFromJsons
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -954,6 +955,7 @@ MonoBehaviour:
   _paintingLabelPrefab: {fileID: 6391130634069430181, guid: ab06d3d253422fe41a8f99e1980a05aa,
     type: 3}
   _arTrackedImageManager: {fileID: 0}
+  SubscribedOnEvent: 0
 --- !u!4 &1692820061
 Transform:
   m_ObjectHideFlags: 0

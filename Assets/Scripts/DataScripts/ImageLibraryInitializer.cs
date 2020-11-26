@@ -12,7 +12,8 @@ public class ImageLibraryInitializer : UnitySingleton<ImageLibraryInitializer>
     [SerializeField] private ARTrackedImageManager _trackedImageManager;
     [SerializeField] private Dictionary<string, Texture2D> _paintings = new Dictionary<string, Texture2D>();
     [SerializeField] private XRReferenceImageLibrary _referenceLibrary;
-    [SerializeField] private MutableRuntimeReferenceImageLibrary _mutableLibrary;
+
+    private MutableRuntimeReferenceImageLibrary _mutableLibrary;
 
     public OnLibraryCreated OnLibraryCreatedEvent = new OnLibraryCreated();
     public int TotalImagesAdded = 0;
@@ -28,7 +29,7 @@ public class ImageLibraryInitializer : UnitySingleton<ImageLibraryInitializer>
         _trackedImageManager.enabled = true;
     }
 
-    public void LoadDataToImageLibrary()
+    public void InitializeImageLibrary()
     {
         loadPaintings();
 
@@ -48,7 +49,7 @@ public class ImageLibraryInitializer : UnitySingleton<ImageLibraryInitializer>
         {
             _mutableLibrary = _trackedImageManager.referenceLibrary as MutableRuntimeReferenceImageLibrary;
 
-            var jobHandle = _mutableLibrary.ScheduleAddImageJob(image, name, 0.1f);
+            var jobHandle = _mutableLibrary.ScheduleAddImageJob(image, name, 1);
 
             while(!jobHandle.IsCompleted)
             {
