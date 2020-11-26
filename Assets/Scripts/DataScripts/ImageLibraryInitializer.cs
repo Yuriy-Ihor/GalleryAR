@@ -11,20 +11,20 @@ public class ImageLibraryInitializer : UnitySingleton<ImageLibraryInitializer>
 {
     [SerializeField] private ARTrackedImageManager _trackedImageManager;
     [SerializeField] private Dictionary<string, Texture2D> _paintings = new Dictionary<string, Texture2D>();
-    [SerializeField] private XRReferenceImageLibrary _referenceLibrary;
 
+    private XRReferenceImageLibrary _xrReferenceImageLibrary;
     private MutableRuntimeReferenceImageLibrary _mutableLibrary;
 
     public OnLibraryCreated OnLibraryCreatedEvent = new OnLibraryCreated();
     public int TotalImagesAdded = 0;
+    public bool RunTimeLibraryCreated = false;
+    public string ErrorMessage;
 
     private void Awake()
     {
         _trackedImageManager = gameObject.AddComponent<ARTrackedImageManager>();
 
-#if !UNITY_EDITOR
-        _trackedImageManager.referenceLibrary = _trackedImageManager.CreateRuntimeLibrary(_referenceLibrary);
-#endif
+        _trackedImageManager.referenceLibrary = _trackedImageManager.CreateRuntimeLibrary(_xrReferenceImageLibrary);
 
         _trackedImageManager.enabled = true;
     }
@@ -33,23 +33,23 @@ public class ImageLibraryInitializer : UnitySingleton<ImageLibraryInitializer>
     {
         loadPaintings();
 
-#if !UNITY_EDITOR
         foreach (var painting in _paintings)
         {
             AddNewImage(painting.Key, painting.Value);
         }
-#endif
+
+        TotalImagesAdded = _trackedImageManager.referenceLibrary.count;
 
         OnLibraryCreatedEvent.Invoke();
     }
 
     public void AddNewImage(string name, Texture2D image)
     {
+        _mutableLibrary = _trackedImageManager.referenceLibrary as MutableRuntimeReferenceImageLibrary;
+
         try
         {
-            _mutableLibrary = _trackedImageManager.referenceLibrary as MutableRuntimeReferenceImageLibrary;
-
-            var jobHandle = _mutableLibrary.ScheduleAddImageJob(image, name, 1);
+            var jobHandle = _mutableLibrary.ScheduleAddImageJob(image, name, 0.5f);
 
             while(!jobHandle.IsCompleted)
             {
