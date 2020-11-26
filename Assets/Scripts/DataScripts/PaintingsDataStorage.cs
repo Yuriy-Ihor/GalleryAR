@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class PaintingsDataStorage : UnitySingleton<PaintingsDataStorage>
 {
-    public List<string> Keys = new List<string>();
-    public List<PaintingData> Datas = new List<PaintingData>();
-
     private Dictionary<string, PaintingData> _paintingsData = new Dictionary<string, PaintingData>();
 
     public void LoadDataFromJsons()
@@ -27,9 +24,6 @@ public class PaintingsDataStorage : UnitySingleton<PaintingsDataStorage>
 
                 PaintingData newPaintingData = JsonUtility.FromJson<PaintingData>(reader.ReadToEnd());
                 _paintingsData.Add(key, newPaintingData);
-
-                Keys.Add(key);
-                Datas.Add(newPaintingData);
             }
         }
 

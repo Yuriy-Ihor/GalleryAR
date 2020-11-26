@@ -9,21 +9,28 @@ public class PaintingLabelSpawner : MonoBehaviour
     [SerializeField]  private ARTrackedImageManager _arTrackedImageManager;
 
     private List<PaintingLabel> _spawnedLabels;
+    public bool SubscribedOnEvent = false;
 
     private void Start()
     {
         if (_arTrackedImageManager == null)
-            _arTrackedImageManager = FindObjectOfType<ARTrackedImageManager>();
+            _arTrackedImageManager = (ARTrackedImageManager)FindObjectOfType(typeof(ARTrackedImageManager));
+    }
+
+    public void SubscribeOnARTrackedImageManagerTrackedImagesChangedEvent()
+    {
+        _arTrackedImageManager.trackedImagesChanged += OnPaintingIdentified;
+        SubscribedOnEvent = true;
     }
 
     private void OnEnable()
     {
-        _arTrackedImageManager.trackedImagesChanged += OnPaintingIdentified;
+        //_arTrackedImageManager.trackedImagesChanged += OnPaintingIdentified;
     }
 
     private void OnDisable()
     {
-        _arTrackedImageManager.trackedImagesChanged -= OnPaintingIdentified;
+        //_arTrackedImageManager.trackedImagesChanged -= OnPaintingIdentified;
     }
 
     private void OnPaintingIdentified(ARTrackedImagesChangedEventArgs args)

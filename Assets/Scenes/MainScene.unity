@@ -150,8 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fdbc600027d65b46bc6b0153e59c319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Keys: []
-  Datas: []
 --- !u!4 &511566799
 Transform:
   m_ObjectHideFlags: 0
@@ -390,7 +388,6 @@ GameObject:
   m_Component:
   - component: {fileID: 968079564}
   - component: {fileID: 968079563}
-  - component: {fileID: 968079566}
   - component: {fileID: 968079565}
   m_Layer: 0
   m_Name: AR Session Origin
@@ -439,24 +436,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29c545449bfb392459c0b3d59282b1f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _trackedImageManager: {fileID: 968079566}
-  _paintings: []
---- !u!114 &968079566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 968079562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dea56a9eaadd1c439095de4f9a371cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SerializedLibrary: {fileID: 11400000, guid: a98298c303e0b0c4ba542f99eb1e0ed2,
-    type: 2}
-  m_MaxNumberOfMovingImages: 0
-  m_TrackedImagePrefab: {fileID: 0}
+  _trackedImageManager: {fileID: 0}
+  _referenceLibrary: {fileID: 11400000, guid: a98298c303e0b0c4ba542f99eb1e0ed2, type: 2}
+  OnLibraryCreatedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1692820060}
+        m_MethodName: SubscribeOnARTrackedImageManagerTrackedImagesChangedEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1063593991
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,7 +953,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _paintingLabelPrefab: {fileID: 6391130634069430181, guid: ab06d3d253422fe41a8f99e1980a05aa,
     type: 3}
-  _arTrackedImageManager: {fileID: 968079566}
+  _arTrackedImageManager: {fileID: 0}
 --- !u!4 &1692820061
 Transform:
   m_ObjectHideFlags: 0

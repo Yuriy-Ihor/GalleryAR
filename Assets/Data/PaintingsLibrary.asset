@@ -23,5 +23,5 @@ MonoBehaviour:
       m_GuidHigh: 15530344543072742523
     m_Size: {x: 0, y: 0}
     m_SpecifySize: 0
-    m_Name: ButtonBg
+    m_Name: 0
     m_Texture: {fileID: 0}
