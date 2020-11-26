@@ -5,11 +5,9 @@ using UnityEngine.XR.ARFoundation;
 public class PaintingLabelSpawner : MonoBehaviour
 {
     [SerializeField] private PaintingLabel _paintingLabelPrefab;
+    [SerializeField] private ARTrackedImageManager _arTrackedImageManager;
 
-    [SerializeField]  private ARTrackedImageManager _arTrackedImageManager;
-
-    private List<PaintingLabel> _spawnedLabels;
-    public bool SubscribedOnEvent = false;
+    private List<PaintingLabel> _spawnedLabels = new List<PaintingLabel>();
 
     public void SubscribeOnARTrackedImageManagerTrackedImagesChangedEvent()
     {
@@ -17,7 +15,6 @@ public class PaintingLabelSpawner : MonoBehaviour
             _arTrackedImageManager = (ARTrackedImageManager)FindObjectOfType(typeof(ARTrackedImageManager));
 
         _arTrackedImageManager.trackedImagesChanged += OnPaintingIdentified;
-        SubscribedOnEvent = true;
     }
 
     private void OnEnable()

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,16 +8,14 @@ using UnityEngine.XR.ARFoundation;
 
 public class ImageLibraryInitializer : UnitySingleton<ImageLibraryInitializer>
 {
-    [SerializeField] private ARTrackedImageManager _trackedImageManager;
-    [SerializeField] private Dictionary<string, Texture2D> _paintings = new Dictionary<string, Texture2D>();
+    private ARTrackedImageManager _trackedImageManager;
+    private Dictionary<string, Texture2D> _paintings = new Dictionary<string, Texture2D>();
 
     private XRReferenceImageLibrary _xrReferenceImageLibrary;
     private MutableRuntimeReferenceImageLibrary _mutableLibrary;
 
     public OnLibraryCreated OnLibraryCreatedEvent = new OnLibraryCreated();
     public int TotalImagesAdded = 0;
-    public bool RunTimeLibraryCreated = false;
-    public string ErrorMessage;
 
     private void Awake()
     {
@@ -38,8 +35,6 @@ public class ImageLibraryInitializer : UnitySingleton<ImageLibraryInitializer>
             AddNewImage(painting.Key, painting.Value);
         }
 
-        TotalImagesAdded = _trackedImageManager.referenceLibrary.count;
-
         OnLibraryCreatedEvent.Invoke();
     }
 
@@ -50,15 +45,7 @@ public class ImageLibraryInitializer : UnitySingleton<ImageLibraryInitializer>
         try
         {
             var jobHandle = _mutableLibrary.ScheduleAddImageJob(image, name, 0.5f);
-
-            while(!jobHandle.IsCompleted)
-            {
-
-            }
-
             jobHandle.Complete();
-            TotalImagesAdded++;
-            Debug.Log("Image added!");
         }
         catch (Exception e)
         {

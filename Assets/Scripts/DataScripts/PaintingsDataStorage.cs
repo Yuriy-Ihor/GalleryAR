@@ -23,6 +23,7 @@ public class PaintingsDataStorage : UnitySingleton<PaintingsDataStorage>
                 string key = Path.GetFileNameWithoutExtension(file.Name);
 
                 PaintingData newPaintingData = JsonUtility.FromJson<PaintingData>(reader.ReadToEnd());
+                Data.Add(newPaintingData);
                 _paintingsData.Add(key, newPaintingData);
             }
         }
@@ -36,7 +37,7 @@ public class PaintingsDataStorage : UnitySingleton<PaintingsDataStorage>
         {
             return _paintingsData[key];
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             Debug.LogError(e.ToString());
         }
