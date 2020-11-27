@@ -13,7 +13,7 @@ public class PaintingLabel : MonoBehaviour
     public void Init(ARTrackedImage image)
     {
         PaintingsDataStorage paintingsDataStorage = PaintingsDataStorage.GetInstance;
-        _paintingData = paintingsDataStorage.GetPaintingData(image.referenceImage.name);
+        _paintingData = paintingsDataStorage.TryGetPaintingData(image.referenceImage.name);
 
         _paintingTitle.text = _paintingData.Title;
         _paintingAuthor.text = _paintingData.Author;

@@ -27,7 +27,7 @@ public class PaintingsDataStorage : UnitySingleton<PaintingsDataStorage>
         }
     }
 
-    public PaintingData GetPaintingData(string key)
+    public PaintingData TryGetPaintingData(string key)
     {
         try
         {

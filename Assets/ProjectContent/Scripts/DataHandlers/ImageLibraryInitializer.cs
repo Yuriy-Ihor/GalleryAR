@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,7 +10,6 @@ public class ImageLibraryInitializer : UnitySingleton<ImageLibraryInitializer>
     private ARTrackedImageManager _trackedImageManager;
     private Dictionary<string, Texture2D> _paintings = new Dictionary<string, Texture2D>();
 
-    private XRReferenceImageLibrary _xrReferenceImageLibrary;
     private MutableRuntimeReferenceImageLibrary _mutableLibrary;
 
     public OnLibraryCreated OnLibraryCreatedEvent = new OnLibraryCreated();
@@ -21,7 +19,7 @@ public class ImageLibraryInitializer : UnitySingleton<ImageLibraryInitializer>
         _trackedImageManager = gameObject.AddComponent<ARTrackedImageManager>();
 
 #if !UNITY_EDITOR
-        _trackedImageManager.referenceLibrary = _trackedImageManager.CreateRuntimeLibrary(_xrReferenceImageLibrary);
+        _trackedImageManager.referenceLibrary = _trackedImageManager.CreateRuntimeLibrary();
 #endif
 
         _trackedImageManager.enabled = true;
@@ -29,7 +27,7 @@ public class ImageLibraryInitializer : UnitySingleton<ImageLibraryInitializer>
 
     public void InitializeImageLibrary()
     {
-        loadPaintings();
+        LoadPaintings();
 
         foreach (var painting in _paintings)
         {
@@ -58,7 +56,7 @@ public class ImageLibraryInitializer : UnitySingleton<ImageLibraryInitializer>
 
     }
 
-    private void loadPaintings()
+    private void LoadPaintings()
     {
         var paintings = new DirectoryInfo(PaintingsDataSaver.PathToPaintings);
         var fileInfo = paintings.GetFiles();
@@ -67,14 +65,14 @@ public class ImageLibraryInitializer : UnitySingleton<ImageLibraryInitializer>
         {
             if (file.Extension == ".jpg")
             {
-                var texture = loadPNG(file.ToString());
+                var texture = LoadPNG(file.ToString());
 
                 _paintings.Add(Path.GetFileNameWithoutExtension(file.ToString()), texture);
             }
         }
     }
 
-    private Texture2D loadPNG(string filePath)
+    private Texture2D LoadPNG(string filePath)
     {
         Texture2D tex = null;
         byte[] fileData;
@@ -88,9 +86,10 @@ public class ImageLibraryInitializer : UnitySingleton<ImageLibraryInitializer>
         return tex;
     }
 
-    [Serializable]
-    public class OnLibraryCreated : UnityEvent
-    { }
+    
 }
 
-
+[System.Serializable]
+public class OnLibraryCreated : UnityEvent
+{ 
+}

@@ -23,11 +23,11 @@ public class DatabaseDataLoader : UnitySingleton<DatabaseDataLoader>
         }
         else
         {
-            initializeFirebase();
+            InitializeFirebase();
         }
     }
 
-    private void initializeFirebase()
+    private void InitializeFirebase()
     {
         _database.SetPersistenceEnabled(false);
 
@@ -36,8 +36,6 @@ public class DatabaseDataLoader : UnitySingleton<DatabaseDataLoader>
             LoadAndSaveData();
         });
     }
-
-    private IEnumerator coroutine;
 
     private void LoadAndSaveData()
     {
@@ -49,12 +47,10 @@ public class DatabaseDataLoader : UnitySingleton<DatabaseDataLoader>
 
                 foreach (DataSnapshot painting in snapshot.Children)
                 {
-                    _dataSaver.SaveLoadedSnapshotData(painting);
+                    _dataSaver.SaveLoadedDataFromSnapshot(painting);
                 }
 
-                coroutine = WaitUntilAllImagesSaved(totalImages);
-
-                StartCoroutine(coroutine);
+                StartCoroutine(WaitUntilAllImagesSaved(totalImages));
             }
         });
     }
@@ -70,4 +66,5 @@ public class DatabaseDataLoader : UnitySingleton<DatabaseDataLoader>
 
 [System.Serializable]
 public class OnAllDataLoadAttempt : UnityEvent
-{ }
+{ 
+}

@@ -12,7 +12,7 @@ public class PaintingsDataSaver : UnitySingleton<PaintingsDataSaver>
 
     public int TotalImagesDownloaded { get; private set; } = 0;
 
-    public void SaveLoadedSnapshotData(DataSnapshot painting)
+    public void SaveLoadedDataFromSnapshot(DataSnapshot painting)
     {
         string info = painting.GetRawJsonValue();
 
@@ -35,13 +35,13 @@ public class PaintingsDataSaver : UnitySingleton<PaintingsDataSaver>
         }
     }
 
-    public void DownloadImage(string fileName, string url, string pathToSaveImage)
+    private void DownloadImage(string fileName, string url, string pathToSaveImage)
     {
         WWW www = new WWW(url);
-        StartCoroutine(downloadImage(fileName, www, pathToSaveImage));
+        StartCoroutine(DownloadImage(fileName, www, pathToSaveImage));
     }
 
-    private IEnumerator downloadImage(string fileName, WWW www, string savePath)
+    private IEnumerator DownloadImage(string fileName, WWW www, string savePath)
     {
         yield return www;
 
@@ -49,7 +49,7 @@ public class PaintingsDataSaver : UnitySingleton<PaintingsDataSaver>
 
         if (string.IsNullOrEmpty(www.error))
         {
-            saveImage(fileName, savePath, www.bytes);
+            SaveImage(fileName, savePath, www.bytes);
         }
         else
         {
@@ -57,7 +57,7 @@ public class PaintingsDataSaver : UnitySingleton<PaintingsDataSaver>
         }
     }
 
-    private void saveImage(string fileName, string path, byte[] imageBytes)
+    private void SaveImage(string fileName, string path, byte[] imageBytes)
     {
         if (!Directory.Exists(Path.GetDirectoryName(path)))
         {
