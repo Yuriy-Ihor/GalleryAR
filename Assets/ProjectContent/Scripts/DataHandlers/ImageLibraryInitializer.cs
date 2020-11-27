@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -89,7 +90,7 @@ public class ImageLibraryInitializer : UnitySingleton<ImageLibraryInitializer>
     
 }
 
-[System.Serializable]
+[Serializable]
 public class OnLibraryCreated : UnityEvent
 { 
 }
